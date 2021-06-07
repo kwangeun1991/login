@@ -8,9 +8,11 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const logger = require('./lib/logger');
 const { sequelize } = require('./models');
+const { mainMenu } = require('./middlewares/main_menu'); // 메인메뉴
 
 /** 라우터 */
-const indexRouter = require('./routes');
+const indexRouter = require('./routes'); // 메인페이지
+const memberRouter = require('./routes/member'); // 회원페이지
 
 dotenv.config();
 
@@ -58,6 +60,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 app.use(express.urlencoded({ extended : false }));
 
+app.use(mainMenu);
+
 /** 공통 라우터 */
 app.use((req, res, next) => {
   // body 클래스 자동완성(url 기준)
@@ -90,7 +94,9 @@ app.use((req, res, next) => {
 
 /** 라우터 등록 */
 app.use("/", indexRouter);
-app.use("/member/login", indexRouter);
+//app.use("/member/login", indexRouter);
+app.use('/member', memberRouter);
+
 
 // 없는 페이지 처리
 app.use((req, res, next) => {

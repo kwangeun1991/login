@@ -1,0 +1,29 @@
+<!-- 회원 가입, 수정 양식 -->
+{% block content %}
+<form action="/member" method="post" target='ifrmHidden' autocomplete="off">
+  <dl>
+    <dt>아이디</dt>
+    <dd>
+      <input type="text" name="memId" value="">
+    </dd>
+  </dl>
+  <dl>
+    <dt>비밀번호</dt>
+    <dd>
+      <input type="password" name="memPw" value="">
+    </dd>
+  </dl>
+  <dl>
+    <dt>비밀번호 확인</dt>
+    <dd>
+      <input type="password" name="memPwRe" value="">
+    </dd>
+  </dl>
+  <dl>
+    <dt>회원명</dt>
+    <dd>
+      <input type="text" name="memNm" value="">
+    </dd>
+  </dl>
+</form>
+{% endblock %}
